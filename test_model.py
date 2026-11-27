@@ -52,6 +52,25 @@ class RefinanceTest(unittest.TestCase):
             size(renewal=1.1)
         self.assertIsNone(size(backfill=1, rent_reset=.5)["min_renewal"])
 
+    def test_break_even_above_full_renewal_is_unreachable(self):
+        downside = Scenario(**CONFIG["scenarios"][1])
+        answer = run_scenario(CONFIG["facts"], CONFIG["presale_rollover"], RULES, downside)
+        self.assertGreater(answer["gap_m"], 0)
+        self.assertIsNone(answer["min_renewal"])
+        self.assertIsNone(size(renewal=1, cap_rate=.10)["min_renewal"])
+
+    def test_cap_rate_grid_and_dscr_switch(self):
+        results = build_results(CONFIG)
+        caps = CONFIG["grid"]["cap_rates"]
+        row = results["cap_grid_gap_m"][CONFIG["grid"]["renewals"].index(.95)]
+        self.assertEqual(row[caps.index(.0875)], size()["gap_m"])
+        self.assertEqual(row, sorted(row))
+        self.assertAlmostEqual(row[caps.index(.09)], size(cap_rate=.09)["gap_m"])
+        self.assertGreater(row[caps.index(.09)], 10)
+        rate = results["dscr_binding_rate"]
+        self.assertEqual(size(rate=rate - 1e-6)["binding"], "LTV")
+        self.assertEqual(size(rate=rate + 1e-6)["binding"], "DSCR")
+
 
 if __name__ == "__main__":
     unittest.main()

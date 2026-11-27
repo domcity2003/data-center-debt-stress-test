@@ -67,9 +67,11 @@ def run_scenario(facts, rollover, rules, s):
     required_ncf = target * max(s.cap_rate / rules.max_ltv, constant * rules.min_dscr, rules.min_debt_yield)
     ncf_at_zero = ncf - ch3_rent * s.flow_through * s.rent_reset * (1 - s.backfill) * s.renewal
     renewal_slope = ch3_rent * s.flow_through * s.rent_reset * (1 - s.backfill)
+    # Share of exposed CH3 rent that must renew for the takeout to cover the payoff.
+    # None means even full renewal cannot cover it with the other drivers unchanged.
     if ncf_at_zero >= required_ncf:
         min_renewal = 0.0
-    elif renewal_slope > 0:
+    elif renewal_slope > 0 and (required_ncf - ncf_at_zero) / renewal_slope <= 1:
         min_renewal = (required_ncf - ncf_at_zero) / renewal_slope
     else:
         min_renewal = None
@@ -100,6 +102,19 @@ def build_results(config):
           for rate in config["grid"]["rates"]] for renewal in config["grid"]["renewals"]]
         for rent in config["grid"]["rent_resets"]
     ]
+    cap_grid = [
+        [size(base, renewal=renewal, cap_rate=cap)["gap_m"] for cap in config["grid"]["cap_rates"]]
+        for renewal in config["grid"]["renewals"]
+    ]
+    # Lowest refinance coupon at which the DSCR test, not LTV, sets base-case proceeds.
+    low, high = 0.0, 0.25
+    if size(base, rate=high)["binding"] == "LTV":
+        dscr_rate = None
+    else:
+        for _ in range(60):
+            mid = (low + high) / 2
+            low, high = (mid, high) if size(base, rate=mid)["binding"] == "LTV" else (low, mid)
+        dscr_rate = high
     isolation = {"renewal": 1, "backfill": 0, "rent_reset": 1, "other_realization": 1}
     probes = [
         ("Full CH3 rent retained", isolation),
@@ -109,6 +124,7 @@ def build_results(config):
     ]
     return {
         "cases": [size(s) for s in scenarios], "grid_gap_m": grid,
+        "cap_grid_gap_m": cap_grid, "dscr_binding_rate": dscr_rate,
         "rules": asdict(rules),
         "diligence": [
             {"label": label, **{k: answer[k] for k in ("ncf_m", "net_m", "gap_m")}}
