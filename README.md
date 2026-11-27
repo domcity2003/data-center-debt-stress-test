@@ -1,6 +1,8 @@
 # Data Center Debt Stress Test
 
-How much can a new lender advance against two Chicago-area data centers when their $450 million mortgage comes due in August 2033? This project sizes the takeout using the lowest of three lender limits and shows the cash a sponsor would need to supply at closing.
+This loan-level credit surveillance case study models the August 2033 maturity of DATA 2023-CNTR, a $450 million mortgage secured by two Chicago-area data centers. The downside covers current interest **1.93x** but leaves a **$102.1 million refinancing gap**. That gap is the cash the sponsor would need to raise beyond the modeled net proceeds, before any credit for sponsor liquidity.
+
+[Read the two-page credit memo](output/DATA_2023_CNTR_Credit_Memo.pdf) · [Download the editable Excel model](output/Data_Center_Debt_Stress_Test.xlsx) · [Inspect deal inputs](data/deal.json)
 
 | Case | Existing interest coverage | Net proceeds | Payoff cushion | Funding gap |
 | --- | ---: | ---: | ---: | ---: |
@@ -8,13 +10,11 @@ How much can a new lender advance against two Chicago-area data centers when the
 | Downside | 1.93x | $347.9m | — | $102.1m |
 | Severe | 1.54x | $252.0m | — | $198.0m |
 
-[Excel model](output/Data_Center_Debt_Stress_Test.xlsx) · [Two-page credit memo](output/DATA_2023_CNTR_Credit_Memo.pdf) · [Public inputs and assumptions](data/deal.json)
-
 ## Try the model
 
-Open **Summary**, then change the blue cells on **Assumptions**. On **Stress Grid**, compare the 95% renewal row at the 7.25% and 10.00% refinance coupons with flat CH3 rent. The payoff moves from a small surplus to a $36.0m gap. **Sizing** traces the value, coverage and debt-yield constraints and shows which one binds. **Sources** gives the disclosure dates and page numbers.
+Open **Stress Grid** and find the 95% CH3 renewal row in the flat-rent panel. At a 7.25% refinance coupon, the model shows a $0.6m payoff cushion. At 10.00%, the gap is $36.0m and the binding constraint switches from loan-to-value to debt-service coverage. The grid shows a dash when no funding gap remains. To run your own case, edit the blue cells on **Assumptions**, then trace the proceeds on **Sizing**.
 
-The presale CH3 cohorts represent 27 MW and $30.8m of annual base rent scheduled to expire in 2026–27 as of the original disclosure. The model measures a rent shock against KBRA's July 2026 campus cash-flow anchor. The new rent roll and signed amendments are the highest-priority diligence items because the public surveillance release does not establish individual lease terms through the 2033 payoff. No default probability, sponsor liquidity or bond waterfall is assumed.
+The 2023 presale identifies 27 MW and $30.8m in annual base rent at CH3 scheduled to expire in 2026–27. The model uses that cohort to size a rent shock against KBRA's July 2026 campus cash-flow estimate. The priority diligence request is the current rent roll and signed amendments showing which CH3 suites pay contracted rent through August 2033. The workbook's **Sources** tab and the memo identify the vintage and location of each disclosure.
 
 ## Reproduce
 
@@ -23,7 +23,9 @@ python model.py
 python -m unittest -v
 ```
 
-The calculations use the Python standard library. To regenerate the memo, install ReportLab and run `python build_memo.py`. The workbook generator uses the Codex runtime's Node and `@oai/artifact-tool`. With those available, run `node build_workbook.mjs --render`. Set `CODEX_PRIMARY_RUNTIME_NODE_MODULES` to the runtime package directory if the module is not resolvable, and set `CODEX_PRIMARY_RUNTIME_PYTHON` if needed. The checked-in Excel file opens without a build.
+The Python report returns three named scenarios, a 108-cell sensitivity grid and four diligence shocks. In the downside JSON entry, `gap_m` is approximately `102.08`. The model and six tests use the Python standard library. The checked-in Excel and PDF artifacts open without a build.
+
+To regenerate the memo, install ReportLab and run `python build_memo.py`. To regenerate the workbook, run `node build_workbook.mjs --render` with the Codex runtime's Node and `@oai/artifact-tool`. If needed, set `CODEX_PRIMARY_RUNTIME_NODE_MODULES` and `CODEX_PRIMARY_RUNTIME_PYTHON` to the runtime module directory and Python executable.
 
 ## Review notes
 
