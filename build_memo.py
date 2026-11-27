@@ -55,7 +55,7 @@ def case_table(lines):
 def footer(pdf, doc):
     pdf.saveState()
     pdf.setTitle("DATA 2023-CNTR Credit Memo")
-    pdf.setAuthor("Portfolio credit research")
+    pdf.setAuthor("Dominic Bavuso")
     pdf.setStrokeColor(colors.HexColor("#BBCBD6"))
     pdf.line(57, 47, 555, 47)
     pdf.setFont("Helvetica", 8.5)

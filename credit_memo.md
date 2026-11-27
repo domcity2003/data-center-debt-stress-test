@@ -4,13 +4,13 @@
 
 ## Credit view
 
-Carry is supported in the cases tested, but maturity refinancing warrants close monitoring. The base case covers a $450 million payoff by $0.6 million after fees. The downside needs $102.1 million of other funding while still covering interest on the current loan 1.93 times. Before underwriting a full takeout, obtain the current CH3 rent roll and executed leases and amendments. Confirm which suites pay contracted rent through August 2033.
+Carry is supported in the cases tested, but maturity refinancing warrants close monitoring. The base case covers a $450 million payoff by $0.6 million after fees, and only if KBRA's 2026 value holds: each 25 basis points of exit cap rate expansion opens a gap of about $12 million. The downside needs $102.1 million of other funding while still covering interest on the current loan 1.93 times. Before underwriting a full takeout, obtain the current CH3 rent roll and executed leases and amendments. Confirm which suites pay contracted rent through August 2033.
 
 ## Collateral and loan
 
-The mortgage is a $450 million first-lien, fixed-rate, interest-only loan on the CH1 and CH3 data centers. It carries a 5.75% coupon and is scheduled to mature August 6, 2033. Annual interest is $25.875 million on the stated balance. The campus has 67.4 MW of rentable power. [1, 3]
+The mortgage is a $450 million first-lien, fixed-rate, interest-only loan on the CH1 and CH3 data centers. It carries a 5.75% coupon and is scheduled to mature August 6, 2033. Annual interest is $25.875 million on the stated balance. The campus has 67.4 MW of rentable power. The borrowers are indirectly owned by Digital Realty and GI Partners. At issuance, S&P sized the loan at 1.85x debt service coverage on its own cash flow and a $571.1 million value at an 8.50% cap rate, against a $906.0 million as-is appraisal. [1, 3]
 
-KBRA's July 2026 surveillance used $60.1 million of underwritten net cash flow and a $686.5 million value, up from $48.2 million and $550.5 million in July 2025. KBRA reported a 65.5% loan-to-value ratio and upgraded four classes. Higher occupancy and base rent supported the improvement. Those figures describe the collateral at surveillance. They give no assurance that the 2033 balloon can refinance. [2, 3]
+KBRA's July 2026 rating review used $60.1 million of underwritten net cash flow and a $686.5 million value, up from $48.2 million and $550.5 million in July 2025. KBRA reported a 65.5% loan-to-value ratio and upgraded four classes. Higher occupancy and base rent supported the improvement. Those figures describe the collateral at the review. They give no assurance that the 2033 balloon can refinance. [2, 3]
 
 The 2023 presale lists 27 MW and $30.8 million of annual base rent at CH3 in the 2026–27 expiration cohorts. Across both buildings, the same cohorts account for $55.8 million. The values size the exposure at origination. The public releases used here do not provide signed renewal economics or a current suite-level CH3 schedule. [1, 3]
 
@@ -26,7 +26,9 @@ Amounts in USD millions. Coverage uses the existing interest-only loan.
 
 ## What breaks the takeout
 
-At a 7.25% refinance coupon with flat CH3 rent and half of nonrenewed space backfilled by maturity, about 94.4% of the exposed CH3 rent must renew. At 95% renewal, a 10% rent reduction creates an $18.7 million gap at that coupon. A 10% coupon creates a $36.0 million gap with flat rent. The LTV limit binds in the three named cases. DSCR binds at 10% with base assumptions held otherwise constant.
+Value, more than the coupon. The base case takes KBRA's July 2026 value at face: $60.1 million of cash flow at an implied 8.75% cap rate. The 67% LTV limit then sets proceeds, and the refinance coupon does not change them until it passes about 9.0%, where DSCR takes over. With renewal and rent at base, a 9.00% exit cap rate creates an $11.9 million gap and 9.50% a $34.9 million gap.
+
+At a 7.25% coupon with flat CH3 rent and half of nonrenewed space backfilled by maturity, about 94.4% of the exposed CH3 rent must renew. At 95% renewal, a 10% rent reduction creates an $18.7 million gap. A 10% coupon creates a $36.0 million gap with flat rent. In the downside and severe cases, even full CH3 renewal does not close the gap.
 
 ## First diligence request
 
@@ -42,8 +44,8 @@ The model holds other cash flow at the 2026 anchor, apart from the explicit rent
 
 ## Sources
 
-[1] [S&P Global Ratings presale, June 22, 2023](https://www.spglobal.com/_assets/documents/ratings/research/12758184.pdf), pp. 1, 3, and 8–9 for loan terms and expiration cohorts.
+[1] [S&P Global Ratings presale, June 22, 2023](https://www.spglobal.com/_assets/documents/ratings/research/12758184.pdf): Profile and Rationale for loan terms and value; Table 2 (lease rollover) for expiration cohorts.
 
-[2] [KBRA surveillance, July 18, 2025](https://www.kbra.com/publications/mCZtPvZw/kbra-affirms-all-ratings-for-data-2023-cntr).
+[2] [KBRA rating action release, July 18, 2025](https://www.kbra.com/publications/mCZtPvZw/kbra-affirms-all-ratings-for-data-2023-cntr).
 
-[3] [KBRA surveillance, July 17, 2026](https://www.kbra.com/publications/xMgkyWKv/kbra-upgrades-four-ratings-and-affirms-one-rating-for-data-2023-cntr).
+[3] [KBRA rating action release, July 17, 2026](https://www.kbra.com/publications/xMgkyWKv/kbra-upgrades-four-ratings-and-affirms-one-rating-for-data-2023-cntr).

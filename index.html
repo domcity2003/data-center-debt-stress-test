@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DATA 2023-CNTR refinance stress test</title>
+  <meta name="description" content="Interactive credit stress test of the August 2033 refinancing of the $450m DATA 2023-CNTR CMBS loan.">
+  <link rel="stylesheet" href="web/style.css">
+  <script defer src="web/deal-data.js"></script>
+  <script defer src="web/model.js"></script>
+  <script defer src="web/app.js"></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="wrap masthead-inner">
+      <div><span class="mark" aria-hidden="true">&#9650;</span> Data Center Debt Stress Test</div>
+      <span class="market">DATA 2023-CNTR &middot; Elk Grove Village, IL</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="page-heading" aria-labelledby="finding">
+      <p class="eyebrow">August 2033 refinancing &middot; credit stress test</p>
+      <h1 id="finding">The base case covers the $450m payoff by only <span id="h-base">$0.6m</span>. The downside leaves a <span id="h-down">$102.1m</span> funding gap.</h1>
+      <p class="context">A $450m first-lien, fixed-rate, interest-only CMBS loan at 5.75% on two Chicago-area data centers (CH1 and CH3, 67.4 MW), maturing August 6, 2033. Collateral figures come from KBRA's July 2026 rating review and the 2023 S&amp;P Global Ratings presale. Move the drivers below to stress the refinance.</p>
+    </section>
+
+    <div class="workspace">
+      <section class="panel controls" aria-labelledby="controls-h">
+        <div class="panel-title"><h2 id="controls-h">Drivers</h2><span id="preset-note">Base preset</span></div>
+        <div class="scenarios" role="group" aria-label="Scenario presets" id="scenarios"></div>
+        <div id="control-list"></div>
+        <p class="fine" id="held-note"></p>
+        <p class="error" id="error" role="alert" hidden></p>
+      </section>
+
+      <div class="results">
+        <section class="tiles" aria-label="Stressed results" aria-live="polite">
+          <div class="tile"><h3>Stressed NCF</h3><strong id="t-ncf"></strong><p id="t-ncf-sub"></p></div>
+          <div class="tile"><h3>Existing interest coverage</h3><strong id="t-cov"></strong><p>On the $450m loan at 5.75%</p></div>
+          <div class="tile"><h3>Net takeout</h3><strong id="t-net"></strong><p id="t-net-sub"></p></div>
+          <div class="tile" id="tile-gap"><h3 id="t-gap-h">Payoff cushion</h3><strong id="t-gap"></strong><p id="t-gap-sub"></p></div>
+          <div class="tile"><h3>Binding lender test</h3><strong id="t-bind"></strong><p id="t-bind-sub"></p></div>
+          <div class="tile"><h3>Break-even CH3 renewal</h3><strong id="t-be"></strong><p id="t-be-sub"></p></div>
+        </section>
+
+        <section class="panel" aria-labelledby="sizing-h">
+          <div class="panel-title"><h2 id="sizing-h">Sizing: what each lender test allows</h2><span>Gross loan, $m</span></div>
+          <div id="sizing" class="sizing" role="img" aria-labelledby="sizing-h sizing-alt"></div>
+          <p class="sr-only" id="sizing-alt"></p>
+          <div class="legend"><span class="key-bar"></span> Binding limit <span class="key-bar other"></span> Other limits <span class="key-line"></span> Payoff plus fees</div>
+          <p class="fine" id="sizing-note"></p>
+        </section>
+      </div>
+    </div>
+
+    <section class="panel" aria-labelledby="g1-h">
+      <div class="panel-title"><h2 id="g1-h">Funding gap by CH3 renewal and refinance coupon</h2><span>$m, shortfall to the $450m payoff</span></div>
+      <p class="fine" id="g1-held"></p>
+      <div class="table-scroll"><table id="grid1" class="heat"></table></div>
+    </section>
+
+    <section class="panel" aria-labelledby="g2-h">
+      <div class="panel-title"><h2 id="g2-h">Funding gap by CH3 renewal and exit cap rate</h2><span>$m, shortfall to the $450m payoff</span></div>
+      <p class="fine" id="g2-held"></p>
+      <div class="table-scroll"><table id="grid2" class="heat"></table></div>
+      <p class="fine">A dash means the net takeout covers the payoff. Outlined cell: the nearest grid point to the current drivers.</p>
+    </section>
+
+    <section class="panel" aria-labelledby="dil-h">
+      <div class="panel-title"><h2 id="dil-h">Diligence shocks</h2><span>One variable at a time, from full CH3 rent</span></div>
+      <p class="fine">Base financing terms (7.25% coupon, 8.75% cap rate). These do not move with the drivers above.</p>
+      <div class="table-scroll"><table id="dil" class="plain"></table></div>
+    </section>
+
+    <section class="panel prose" aria-labelledby="ass-h">
+      <h2 id="ass-h">Assumptions and limits</h2>
+      <ul>
+        <li>Starting point is KBRA's July 2026 net cash flow of $60.1m. The 2023 presale's 2026 and 2027 expirations ($30.8m at CH3, $55.8m across both buildings) scale the rent gains and losses. The 2026 anchor and the presale rent roll cannot be reconciled suite by suite, so the NCF bridge is a sensitivity proxy.</li>
+        <li>85% of rent changes flow to NCF. Other cash flow is held at the 2026 level apart from the explicit stresses.</li>
+        <li>Takeout is the smallest of three limits: 67% LTV, 1.35x DSCR and 10% debt yield. DSCR uses a 30-year monthly amortizing constant. Proceeds are net of 1% fees.</li>
+        <li>Existing coverage is NCF over the current interest-only coupon. It is not the refinance DSCR.</li>
+        <li>No default probabilities, certificate losses or sponsor liquidity. Signed CH3 lease terms through August 2033 are the first item to confirm in diligence.</li>
+        <li>Illustrative underwriting research, not investment advice. Sources: <a href="https://www.kbra.com/publications/xMgkyWKv/kbra-upgrades-four-ratings-and-affirms-one-rating-for-data-2023-cntr">KBRA, July 2026</a>, <a href="https://www.kbra.com/publications/mCZtPvZw/kbra-affirms-all-ratings-for-data-2023-cntr">KBRA, July 2025</a>, <a href="https://www.spglobal.com/_assets/documents/ratings/research/12758184.pdf">S&amp;P presale, 2023</a>.</li>
+      </ul>
+      <p class="links"><a class="button primary" href="output/DATA_2023_CNTR_Credit_Memo.pdf">Credit memo (PDF)</a> <a class="button" href="output/Data_Center_Debt_Stress_Test.xlsx">Excel model</a> <a class="button" href="data/deal.json">Deal inputs (JSON)</a> <a class="button" href="https://github.com/domcity2003/data-center-debt-stress-test">Repository</a></p>
+    </section>
+  </main>
+
+  <footer class="wrap">Dominic Bavuso &middot; Figures in USD millions. The page runs entirely in your browser.</footer>
+</body>
+</html>
